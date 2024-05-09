@@ -18,25 +18,6 @@ spec:
         app: todonodejs
         name: mysql
     spec:
-      initContainers:
-      - name: mysql-init
-        image: registry.redhat.io/rhel8/mysql-80:1-152
-        env:
-        - name: MYSQL_ROOT_PASSWORD
-          value: r00tpa55
-        - name: MYSQL_USER
-          value: user1
-        - name: MYSQL_PASSWORD
-          value: mypa55
-        - name: MYSQL_DATABASE
-          value: items
-        command:
-          - "sh"
-          - "-c"
-          - "/usr/libexec/mysqld --defaults-file=/etc/my.cnf; until mysql --user={MYSQL_USER} --password={MYSQL_PASSWORD} --execute=\"create table Item (id int NOT NULL AUTO_INCREMENT, description varchar(255), done bool, primary key (id));\"; do echo waiting for mysql; sleep 2; done;"
-        volumeMounts:
-          - mountPath: "/var/lib/mysql"
-            name: db-volume
       containers:
       - image: registry.redhat.io/rhel8/mysql-80:1-152
         name: mysql

@@ -33,7 +33,7 @@ spec:
         command:
           - "sh"
           - "-c"
-          - "mysqld_safe; until mysql --user={MYSQL_USER} --password={MYSQL_PASSWORD} --execute=\"create table Item (id int NOT NULL AUTO_INCREMENT, description varchar(255), done bool, primary key (id));\"; do echo waiting for mysql; sleep 2; done;"
+          - "/usr/libexec/mysqld --defaults-file=/etc/my.cnf; until mysql --user={MYSQL_USER} --password={MYSQL_PASSWORD} --execute=\"create table Item (id int NOT NULL AUTO_INCREMENT, description varchar(255), done bool, primary key (id));\"; do echo waiting for mysql; sleep 2; done;"
         volumeMounts:
           - mountPath: "/var/lib/mysql"
             name: db-volume

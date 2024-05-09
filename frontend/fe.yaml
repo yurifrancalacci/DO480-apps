@@ -22,7 +22,7 @@ spec:
       - resources:
           limits:
             cpu: '0.5'
-        image: quay.io/redhattraining/todo-single:v1.1
+        image: quay.io/redhattraining/todo-single:v1.0
         name: todonodejs
         ports:
         - containerPort: 8080
